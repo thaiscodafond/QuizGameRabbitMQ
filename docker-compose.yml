@@ -1,0 +1,47 @@
+version: '3'
+services:
+  game_engine:
+    build:
+      context: ./game_engine
+    restart: always
+    environment:
+      - HOST=rabbitmq
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+
+  client_side_server:
+    build: 
+      context: ./client_side_server
+    ports:
+      - 8080:8080
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    restart: always
+  
+  front:
+    build:
+      context: ./front
+    ports:
+      - 80:80
+    depends_on:
+      client_side_server:
+        condition: service_started
+      game_engine:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    ports:
+        - 5672:5672
+        - 15672:15672
+    healthcheck:
+      test: rabbitmq-diagnostics ping
+      interval: 5s
+      timeout: 15s
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest

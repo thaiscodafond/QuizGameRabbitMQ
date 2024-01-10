@@ -1,0 +1,214 @@
+{
+  "questions": [
+    {
+      "question": "Quel est le compositeur de la symphonie 'La Cinquième'?",
+      "answers": ["Beethoven", "Mozart", "Bach", "Chopin"],
+      "correct_answer": "Beethoven"
+    },
+    {
+      "question": "Dans quelle ville se trouve le célèbre opéra La Scala?",
+      "answers": ["Paris", "Londres", "Milan", "Vienne"],
+      "correct_answer": "Milan"
+    },
+    {
+      "question": "Qui a peint 'La Joconde'?",
+      "answers": ["Raphaël", "Michel-Ange", "Leonardo da Vinci", "Titien"],
+      "correct_answer": "Leonardo da Vinci"
+    },
+    {
+      "question": "Quel est le pays d'origine du tango?",
+      "answers": ["Brésil", "Argentine", "Espagne", "Cuba"],
+      "correct_answer": "Argentine"
+    },
+    {
+      "question": "Quel écrivain a écrit 'Les Misérables'?",
+      "answers": [
+        "Gustave Flaubert",
+        "Émile Zola",
+        "Victor Hugo",
+        "Charles Baudelaire"
+      ],
+      "correct_answer": "Victor Hugo"
+    },
+    {
+      "question": "Quelle est la ville du Carnaval de Rio?",
+      "answers": ["São Paulo", "Buenos Aires", "Rio de Janeiro", "Caracas"],
+      "correct_answer": "Rio de Janeiro"
+    },
+    {
+      "question": "Dans quel pays est né le philosophe Friedrich Nietzsche?",
+      "answers": ["Allemagne", "France", "Suisse", "Autriche"],
+      "correct_answer": "Allemagne"
+    },
+    {
+      "question": "Quel pays est célèbre pour son art de la danse flamenco?",
+      "answers": ["Italie", "Grèce", "Espagne", "Portugal"],
+      "correct_answer": "Espagne"
+    },
+    {
+      "question": "Quel artiste est connu pour la sculpture 'Le Penseur'?",
+      "answers": [
+        "Vincent van Gogh",
+        "Pablo Picasso",
+        "Auguste Rodin",
+        "Claude Monet"
+      ],
+      "correct_answer": "Auguste Rodin"
+    },
+    {
+      "question": "Quel est l'auteur du roman 'Le Petit Prince'?",
+      "answers": [
+        "Jules Verne",
+        "Marcel Proust",
+        "Antoine de Saint-Exupéry",
+        "Albert Camus"
+      ],
+      "correct_answer": "Antoine de Saint-Exupéry"
+    },
+    {
+      "question": "Dans quel pays est né le peintre Salvador Dalí?",
+      "answers": ["Espagne", "Italie", "France", "Portugal"],
+      "correct_answer": "Espagne"
+    },
+    {
+      "question": "Quel est le célèbre ballet de Tchaïkovski mettant en scène Clara et le Prince Casse-Noisette?",
+      "answers": [
+        "Le Lac des cygnes",
+        "La Belle au bois dormant",
+        "Roméo et Juliette",
+        "Casse-Noisette"
+      ],
+      "correct_answer": "Casse-Noisette"
+    },
+    {
+      "question": "Quel pays est célèbre pour la création du jeu de cartes 'Tarot'?",
+      "answers": ["France", "Italie", "Allemagne", "Suisse"],
+      "correct_answer": "Italie"
+    },
+    {
+      "question": "Qui a peint la fresque 'La Cène'?",
+      "answers": ["Raphaël", "Michel-Ange", "Leonardo da Vinci", "Titien"],
+      "correct_answer": "Leonardo da Vinci"
+    },
+    {
+      "question": "Quel est le célèbre théâtre de l'Opéra à Paris?",
+      "answers": [
+        "Opéra Garnier",
+        "Théâtre des Champs-Élysées",
+        "Théâtre du Châtelet",
+        "Opéra Bastille"
+      ],
+      "correct_answer": "Opéra Garnier"
+    },
+    {
+      "question": "Quel artiste a peint 'La Nuit étoilée'?",
+      "answers": [
+        "Vincent van Gogh",
+        "Pablo Picasso",
+        "Claude Monet",
+        "Édouard Manet"
+      ],
+      "correct_answer": "Vincent van Gogh"
+    },
+    {
+      "question": "Dans quelle ville se trouve le musée du Louvre?",
+      "answers": ["Londres", "Paris", "New York", "Rome"],
+      "correct_answer": "Paris"
+    },
+    {
+      "question": "Quel écrivain a écrit 'Don Quichotte'?",
+      "answers": [
+        "Miguel de Cervantes",
+        "Gabriel García Márquez",
+        "Pablo Neruda",
+        "Jorge Luis Borges"
+      ],
+      "correct_answer": "Miguel de Cervantes"
+    },
+    {
+      "question": "Quel est le pays d'origine du jeu de société 'Chess'?",
+      "answers": ["Inde", "Chine", "Grèce", "Égypte"],
+      "correct_answer": "Inde"
+    },
+    {
+      "question": "Qui a écrit le poème 'Les Fleurs du mal'?",
+      "answers": [
+        "Charles Baudelaire",
+        "Arthur Rimbaud",
+        "Paul Verlaine",
+        "Stéphane Mallarmé"
+      ],
+      "correct_answer": "Charles Baudelaire"
+    },
+    {
+      "question": "Dans quel pays est né le compositeur Frédéric Chopin?",
+      "answers": ["Pologne", "Russie", "Autriche", "Allemagne"],
+      "correct_answer": "Pologne"
+    },
+    {
+      "question": "Quel est le célèbre roman de Fiodor Dostoïevski?",
+      "answers": [
+        "Crime et Châtiment",
+        "Guerre et Paix",
+        "Anna Karénine",
+        "Les Frères Karamazov"
+      ],
+      "correct_answer": "Crime et Châtiment"
+    },
+    {
+      "question": "Quel est le célèbre festival de musique en Belgique?",
+      "answers": [
+        "Rock Werchter",
+        "Glastonbury Festival",
+        "Coachella Valley Music and Arts Festival",
+        "Tomorrowland"
+      ],
+      "correct_answer": "Tomorrowland"
+    },
+    {
+      "question": "Quel pays est célèbre pour la peinture rupestre dans la grotte de Lascaux?",
+      "answers": ["Espagne", "France", "Italie", "Allemagne"],
+      "correct_answer": "France"
+    },
+    {
+      "question": "Quel écrivain est connu pour le roman 'Vingt mille lieues sous les mers'?",
+      "answers": [
+        "Jules Verne",
+        "H. G. Wells",
+        "Herman Melville",
+        "Jonathan Swift"
+      ],
+      "correct_answer": "Jules Verne"
+    },
+    {
+      "question": "Dans quelle ville se déroule le célèbre festival de cinéma à Cannes?",
+      "answers": ["Londres", "Cannes", "Venise", "Berlin"],
+      "correct_answer": "Cannes"
+    },
+    {
+      "question": "Quel est le réalisateur du film 'La Dolce Vita'?",
+      "answers": [
+        "Federico Fellini",
+        "Vittorio De Sica",
+        "Michelangelo Antonioni",
+        "Sergio Leone"
+      ],
+      "correct_answer": "Federico Fellini"
+    },
+    {
+      "question": "Quel est le musée d'art moderne à New York?",
+      "answers": ["The Met", "MoMA", "Guggenheim", "The Louvre"],
+      "correct_answer": "MoMA"
+    },
+    {
+      "question": "Quel artiste a peint 'Les Demoiselles d'Avignon'?",
+      "answers": [
+        "Pablo Picasso",
+        "Édouard Manet",
+        "Claude Monet",
+        "Vincent van Gogh"
+      ],
+      "correct_answer": "Pablo Picasso"
+    }
+  ]
+}
