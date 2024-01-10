@@ -1,13 +1,13 @@
 {
   "name": "client_side_server",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a client side server that will be used to communicate with the server side server. It will be used to send and receive messages from the server side server.",
+  "author": "Thaïs ARCHAUD",
   "main": "client_side_server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "dependencies": {
     "amqplib": "^0.10.3",
     "uuid": "^9.0.1",

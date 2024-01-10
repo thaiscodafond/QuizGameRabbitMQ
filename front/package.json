@@ -1,13 +1,13 @@
 {
   "name": "front",
   "version": "1.0.0",
-  "description": "",
+  "description": "Serves the front-end of the application and handles the client-side interaction with the server.",
   "main": "client_side_interaction.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Thaïs ARCHAUD",
+  "license": "Apache-2.0",
   "dependencies": {
     "ws": "^8.16.0"
   }
