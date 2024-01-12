@@ -9,9 +9,9 @@ let connectedPlayers = 0;
 let requestedNew = 0;
 
 wss.on("connection", function connection(ws) {
-  const clientId = uuidv4();
-  connectedClients.set(ws, clientId);
-  console.log(`Client ${clientId} connected`);
+  const client_id = uuidv4();
+  connectedClients.set(ws, client_id);
+  console.log(`Client ${client_id} connected`);
 
   connectedPlayers++;
 
@@ -20,7 +20,7 @@ wss.on("connection", function connection(ws) {
   }
 
   sendPlayerCountToClients();
-  ws.send(JSON.stringify({ type: "clientId", clientId }));
+  ws.send(JSON.stringify({ type: "client_id", client_id }));
   sendPlayerCountToServer();
 
   ws.on("message", function incoming(message) {
@@ -35,7 +35,7 @@ wss.on("connection", function connection(ws) {
       if (parsedMessage.type === "register") {
         console.log("Client registered");
       } else if (parsedMessage.type === "answer") {
-        sendMessageToConsumer(parsedMessage, clientId, connectedClients);
+        sendMessageToConsumer(parsedMessage, client_id, connectedClients);
       } else if (parsedMessage.type == "new_question") {
         requestedNew += 1;
         if (requestedNew == connectedPlayers) {
@@ -51,7 +51,7 @@ wss.on("connection", function connection(ws) {
 
   ws.on("close", function () {
     connectedClients.delete(ws);
-    console.log(`Client ${clientId} disconnected`);
+    console.log(`Client ${client_id} disconnected`);
     connectedPlayers--;
   });
 });

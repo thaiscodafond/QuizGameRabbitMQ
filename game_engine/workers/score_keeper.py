@@ -6,9 +6,7 @@ ROUND_MAX = 10
 
 class ScoreKeeper:
     def __init__(self):
-        self.connection = pika.BlockingConnection(
-            pika.ConnectionParameters("rabbitmq")
-        )
+        self.connection = pika.BlockingConnection(pika.ConnectionParameters("rabbitmq"))
         self.channel = self.connection.channel()
 
         self.channel.queue_declare(queue="messages_to_clients")
@@ -29,10 +27,16 @@ class ScoreKeeper:
 
     def process_round(self, message):
         self.round_number += 1
-        if self.round_number == self.max_round_number:
+        if self.round_number > self.max_round_number:
             self.new_game()
             self.round_number = 0
             new_message = {"type": "round", "number": self.round_number}
+            channel.queue_declare(queue="messages_to_clients")
+            channel.basic_publish(
+                exchange="",
+                routing_key="fetch_question_queue",
+                body=json.dumps(new_message),
+            )
         else:
             new_message = {"type": "round", "number": self.round_number}
 

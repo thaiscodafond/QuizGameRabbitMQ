@@ -6,21 +6,36 @@
     <script src="client_side_interaction.js" defer></script>
   </head>
   <body>
-    <h1>Welcome to the Quiz!</h1>
-    <div id=""
-    <h2>Players info</h2>
-    <p id="playerCount">Connected: Loading...</p>
-    <p id="playerStatus"></p>
-    <p id="clientId">Your unique ID:</p>
-    <h2>Score</h2>
-    <div id="clientsScore"></div>
-    <p id="roundCounter">Round : 0</p>
-    <div id="questionContainer">
-      <h2>Question:</h2>
-      <p id="questionText"></p>
-      <div id="choices"></div>
-    </div>
+    <header></header>
+    <main>
+      <h1>Welcome to the Quiz!</h1>
+      <section id="playersInfo">
+        <h2>Players info</h2>
+        <p id="playerCount">Connected: Loading...</p>
+        <p id="playerStatus"></p>
+        <p id="clientId">Your unique ID:</p>
+      </section>
+      <!-- To add in future implementations
+        <section id="gameInfo">
+        <h2>Game info</h2>
+        <p id="gameStatus">Game status: Loading...</p>
+        <p id="gameId">Game ID: Loading...</p>
+        <p id="gameCode">Game code: Loading...</p>
+      </section>
+      -->
+      <section id="gameInfo">
+        <h2>Score</h2>
+        <div id="clientsScore"></div>
+        <p id="roundCounter">Round : 0</p>
+      </section>
 
-    <div id="result"></div>
+      <div id="questionContainer">
+        <h2>Question:</h2>
+        <p id="questionText"></p>
+        <div id="choices"></div>
+      </div>
+
+      <div id="result"></div>
+    </main>
   </body>
 </html>

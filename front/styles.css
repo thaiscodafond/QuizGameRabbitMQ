@@ -3,7 +3,16 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: #f4f4f47a;
+    
+  }
+
+  main {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
   h1 {
@@ -24,7 +33,7 @@ body {
 
 #clientsScore p {
   padding: 5px 10px;
-  border-radius: 5px;
+  border-radius: 7px;
   background-color: #f0f0f0;
 }
 
@@ -45,7 +54,9 @@ body {
   /* Quiz container styles */
   #questionContainer {
     background-color: #fff;
-    border-radius: 5px;
+    border-radius: 10px;
+    border-color: #2980b9;
+    border-width: 2px;
     padding: 20px;
     margin-top: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

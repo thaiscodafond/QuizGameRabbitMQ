@@ -2,6 +2,7 @@ const ws = new WebSocket("ws://localhost:8080"); //Depends if docker or localhos
 console.log("WebSocket client running");
 
 clientId = null;
+document.getElementById("roundCounter").style.display = "none";
 
 ws.onopen = function () {
   console.log("Connected to WebSocket server");
@@ -12,17 +13,21 @@ ws.onmessage = function (event) {
   console.log("Received message from server:", event.data);
   const json = JSON.parse(event.data);
 
-  if (json.type === "clientId") {
-    console.log("Client registered with ID:", json.clientId);
+  if (json.type === "client_id") {
+    console.log("Client registered with ID:", json.client_id);
 
     const clientIdElement = document.getElementById("clientId");
-    clientId = json.clientId;
-    clientIdElement.innerText = `Your unique ID: ${json.clientId}`;
+    clientId = json.client_id;
+    clientIdElement.innerText = `Your unique ID: ${clientId}`;
   } else if (json.type === "round") {
     console.log("Round changed");
-
-    const roundNumberElement = document.getElementById("roundCounter");
-    roundNumberElement.innerText = `Round: ${json.number}`;
+    if (json.number > 10) {
+      //do something to show final score
+    } else {
+      const roundNumberElement = document.getElementById("roundCounter");
+      roundNumberElement.innerText = `Round: ${json.number}`;
+      document.getElementById("roundCounter").style.display = "block";
+    }
   } else if (json.type == "result_score") {
     console.log("Received results:", json.results);
     const resultsContainer = document.getElementById("clientsScore");
@@ -64,12 +69,12 @@ ws.onmessage = function (event) {
     });
   } else if (json.type === "response") {
     document.getElementById("result").innerText = json.response;
-    // Attendre une question pendant 10 secondes
+    // Attendre une question pendant 2 secondes
     setTimeout(() => {
       document.getElementById("questionText").innerText =
         "Waiting for the next question...";
       document.getElementById("result").innerText = "";
-    }, 10000);
+    }, 2000);
   } else if (json.type === "player_count") {
     document.getElementById(
       "playerCount"

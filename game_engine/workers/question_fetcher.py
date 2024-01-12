@@ -19,6 +19,8 @@ class QuestionFetcher:
             auto_ack=True,
         )
 
+        self.previous_questions = []
+
         self.data_path = os.path.join(os.getcwd(), "data", "questions.json")
 
         self.channel.start_consuming()
@@ -29,27 +31,37 @@ class QuestionFetcher:
             question_list = questions.get("questions", [])
             if not question_list:
                 return None
-            return random.choice(question_list)
+            if question_list not in self.previous_questions:
+                self.previous_questions.append(question_list)
+                return random.choice(question_list)
+            else:
+                return self.fetch_random_question()
 
     def callback(self, ch, method, properties, body):
         print("QF : received:", body)
+        message = json.loads(body.decode())
+        if message.get("type") == "question":
+            new_question = self.fetch_random_question()
+            question_message = {
+                "type": "question",
+                "data": new_question,
+            }
+            self.channel.basic_publish(
+                exchange="",
+                routing_key="messages_to_clients",
+                body=json.dumps(question_message),
+            )
 
-        new_question = self.fetch_random_question()
-        question_message = {
-            "type": "question",
-            "data": new_question,
-        }
-        self.channel.basic_publish(
-            exchange="",
-            routing_key="messages_to_clients",
-            body=json.dumps(question_message),
-        )
-
-        self.channel.basic_publish(
-            exchange="",
-            routing_key="answer_queue",
-            body=json.dumps(question_message),
-        )
+            self.channel.basic_publish(
+                exchange="",
+                routing_key="answer_queue",
+                body=json.dumps(question_message),
+            )
+        elif message.get("type") == "round":
+            print("QF: ROUND MAX")
+            self.previous_questions = []
+        else:
+            print("QF: message of unknown type")
 
 
 if __name__ == "__main__":
