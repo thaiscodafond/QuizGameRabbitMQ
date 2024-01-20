@@ -31,16 +31,17 @@ class QuestionFetcher:
             question_list = questions.get("questions", [])
             if not question_list:
                 return None
-            if question_list not in self.previous_questions:
-                self.previous_questions.append(question_list)
-                return random.choice(question_list)
+            random_question = random.choice(question_list)
+            if random_question not in self.previous_questions:
+                self.previous_questions.append(random_question)
+                return random_question
             else:
                 return self.fetch_random_question()
 
     def callback(self, ch, method, properties, body):
         print("QF : received:", body)
         message = json.loads(body.decode())
-        if message.get("type") == "question":
+        if message.get("type") == "fetch_question":
             new_question = self.fetch_random_question()
             question_message = {
                 "type": "question",

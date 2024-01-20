@@ -42,10 +42,6 @@ class MessageRouter:
             self.send_to_queue(self.fetch_question_queue, message)
             self.send_to_queue(self.score_keeper_queue, message)
             print("ROUTER: Fetching question...")
-        elif message_type == "score":
-            print("ROUTER: Received score")
-            self.send_to_queue(self.score_keeper_queue, message)
-            self.send_to_queue(self.score_keeper_queue, message)
         elif message_type == "answer":
             print("ROUTER: Received answer")
             self.send_to_queue(self.answer_queue, message)
@@ -58,7 +54,6 @@ class MessageRouter:
 
     def send_to_queue(self, queue_name, message):
         self.channel.basic_publish(exchange="", routing_key=queue_name, body=message)
-        print(f"Sent to {queue_name} queue:", message)
 
     def close(self):
         self.channel.stop_consuming()

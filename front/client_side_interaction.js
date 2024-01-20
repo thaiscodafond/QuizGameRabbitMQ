@@ -44,7 +44,6 @@ ws.onmessage = function (event) {
       resultsContainer.appendChild(p);
     });
     ws.send(JSON.stringify({ type: "new_question" }));
-  } else if (json.type == "result_each") {
   } else if (json.type === "question") {
     console.log("Received new question:", json.data.question);
 

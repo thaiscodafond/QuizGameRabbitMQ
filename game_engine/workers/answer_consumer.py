@@ -70,8 +70,6 @@ class AnswerConsumer:
         print("AC: Sending result to clients")
         score_message = {"type": "score", "result": final_result}
         print(f"AC: Score: {score_message}")
-        result_message = {"type": "result_each", "results": final_result}
-        print(f"AC: Result: {score_message}")
 
         channel = self.connection.channel()
         channel.queue_declare(queue="score_keeper_queue")
@@ -79,14 +77,6 @@ class AnswerConsumer:
             exchange="",
             routing_key="score_keeper_queue",
             body=json.dumps(score_message),
-        )
-
-        channel = self.connection.channel()
-        channel.queue_declare(queue="messages_to_clients")
-        channel.basic_publish(
-            exchange="",
-            routing_key="messages_to_clients",
-            body=json.dumps(result_message),
         )
 
     def start_consuming(self):

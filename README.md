@@ -9,7 +9,6 @@
 5. Why RabbitMQ
 6. Why a WebSocket
 7. Project Specifications & Future Improvements
-8. Git Ignore
 
 ## Introduction
 
@@ -21,7 +20,7 @@ Originally considering a distributed machine learning algorithm, inspired by a p
 
 ### Starting the Project
 
-Ensure Docker is installed. Initiate the gameplay by accessing the project and executing "docker compose up --remove-orphans --build". Access a web browser and navigate to the "localhost:80" website. Multiple pages can be opened, each representing a player.
+Ensure Docker is installed. Clone the repo. Initiate the gameplay by accessing the project and executing "docker compose up --remove-orphans --build". Access a web browser and navigate to the "localhost:80" website. Multiple pages can be opened, each representing a player.
 
 ### Game Rules
 
@@ -30,6 +29,12 @@ Ensure Docker is installed. Initiate the gameplay by accessing the project and e
 * A maximum of ten rounds is allotted for each game.
 
 Enjoy the game!
+
+### Access
+
+For the front : http://localhost:80
+
+For rabbitMQ with user & password "guest" : http://localhost:15672
 
 ## Project Choices and Constraints
 
@@ -44,6 +49,123 @@ Adopting Node.js posed specific constraints, necessitating the use of a WebSocke
 ## Architecture of the Project
 
 By using Vanilla JavaScript on the client side and a WebSocket-enabled server communicating through RabbitMQ with Python workers, we create a system that's fast, responsive, and adaptable. Vanilla JavaScript ensures a smooth user experience, while WebSockets enable real-time updates without constant page refreshes. RabbitMQ ensures reliable communication, crucial for handling more users, and Python workers help distribute heavy tasks efficiently. This straightforward setup, supported by a friendly developer community, allows for easy maintenance and future upgrades, making it an accessible and effective solution for real-time applications.
+
+### Python Router
+
+I decided to use a router to receive all the messages from the client side server and redirect it to the workers.
+
+```mermaid
+graph TD
+    subgraph Python Router
+        
+        B[MessageRouter]
+    end
+
+    subgraph RabbitMQ
+        C[answer_queue]
+        D[fetch_question_queue]
+        E[score_keeper_queue]
+    end
+
+    subgraph JavaScript Server
+         A[WebSocket Clients]
+    end
+
+    A -->|Sends all messages| B
+
+    B -->|Sends answer| C
+
+    B -->|Sends notification to fetch a new question| D
+
+    B -->|Sends player count| E
+    B -->|Sends round count| E
+
+```
+
+## Python workers
+
+The python workers then communicate between themselves to compute the score and also to fetch questions.
+
+``` mermaid
+graph TD
+   subgraph Client
+      MTC(messages_to_clients)
+   end
+
+   subgraph Router
+      R(Router)
+      R --> |sends answer|answer_queue
+      R --> |notify of need of a new question | fetch_question_queue
+      R --> |notify of new round| score_keeper_queue
+   end
+
+  subgraph cluster_QuestionFetcher
+    QF(QuestionFetcher)
+    fetch_question_queue -->|fetch_question| QF
+    QF -->|new question| MTC
+    QF -->|question with right answer for processing| answer_queue
+  end
+
+  subgraph cluster_ScoreKeeper
+   SK(ScoreKeeper)
+   SK --> |fetch_question if new round | fetch_question_queue
+   score_keeper_queue --> |score| SK
+   SK --> |score| MTC
+  end
+
+  subgraph cluster_AnswerConsumer
+    AC(AnswerConsumer)
+    answer_queue
+    answer_queue -->|question| AC
+    answer_queue -->|user_answer| AC
+    AC -->|score to be processed| score_keeper_queue
+  end
+
+```
+
+## Client side server and front
+
+The **Client-Side Server** plays a pivotal role in managing WebSocket communication between the server and the client-side components of our Quiz Game. Responsible for handling real-time updates, user interactions, and facilitating seamless bidirectional communication, this server ensures a dynamic and responsive gaming experience. Utilizing the WebSocket protocol, it establishes persistent connections with the client-side WebSocket Clients, represented in the graph as the **WebSocket Client** cluster. These clients, comprising elements such as Client ID, Round Counter, Results, and Choices, are integral to rendering real-time game updates and user interactions. The communication between the Client-Side Server and the WebSocket Clients is orchestrated through RabbitMQ, as depicted by the arrows connecting them. This architecture enables efficient message passing, allowing for instant updates on game states, player actions, and other critical information, contributing to an engaging and interactive gaming environment.
+
+```mermaid
+graph TD
+  subgraph cluster_ClientSideServer
+    CS(Client-Side Server)
+    subgraph cluster_rabbitmq
+      messages_from_clients(Queue: messages_from_clients)
+      messages_to_clients(Queue: messages_to_clients)
+    end
+  end
+
+  subgraph cluster_WebSocketClient
+    WC(WebSocket Client)
+    clientIdElement(Client ID)
+    roundNumberElement(Round Counter)
+    resultsContainer(Results)
+    choicesContainer(Choices)
+  end
+
+  subgraph cluster_RabbitMQServer
+    RMQ(RabbitMQ Server)
+    subgraph cluster_rabbitmq
+      messages_from_clients(Queue: messages_from_clients)
+      messages_to_clients(Queue: messages_to_clients)
+    end
+  end
+
+  CS -->|WebSocket| WC
+  CS -->|WebSocket| WC
+  WC -->|WebSocket| CS
+  WC -->|WebSocket| CS
+  WC -->|WebSocket| CS
+  RMQ -->|RabbitMQ| CS
+  RMQ -->|RabbitMQ| CS
+
+  CS -->|RabbitMQ| RMQ
+  CS -->|RabbitMQ| RMQ
+  RMQ -->|RabbitMQ| CS
+  RMQ -->|RabbitMQ| CS
+```
 
 ## Why RabbitMQ
 
@@ -110,7 +232,7 @@ In summary, the adoption of WebSockets in our Quiz Game project serves as a stra
 * [ ] Integrate Advanced Features
   * [x] Implement Real-time Updates
   * [ ] Explore Gamification Options
-  * [ ] Add rooms to create and choose from.
+  * [ ] Add rooms to create and choose from and create workers accordingly.
 * [ ] Enhance User Interface
 
 ### Future Improvements
