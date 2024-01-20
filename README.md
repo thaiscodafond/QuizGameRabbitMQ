@@ -226,9 +226,12 @@ In summary, the adoption of WebSockets in our Quiz Game project serves as a stra
 
 ## Project Specifications & Future Improvements
 
-### Initial Project Specifications
+### Project Specifications & 
 
 * [x] Implement Core Functionality
+  * [x] Answer a question
+  * [x] Get result
+  * [x] Number of players
 * [ ] Refactor the JS
 * [ ] Integrate Advanced Features
   * [x] Implement Real-time Updates
@@ -236,6 +239,4 @@ In summary, the adoption of WebSockets in our Quiz Game project serves as a stra
   * [ ] Add rooms to create and choose from and create workers accordingly.
 * [ ] Enhance User Interface
 
-### Future Improvements
 
-Ideas and potential enhancements to expand and refine the project's functionality and experience.
