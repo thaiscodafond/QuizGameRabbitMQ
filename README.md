@@ -229,6 +229,7 @@ In summary, the adoption of WebSockets in our Quiz Game project serves as a stra
 ### Initial Project Specifications
 
 * [x] Implement Core Functionality
+* [ ] Refactor the JS
 * [ ] Integrate Advanced Features
   * [x] Implement Real-time Updates
   * [ ] Explore Gamification Options
